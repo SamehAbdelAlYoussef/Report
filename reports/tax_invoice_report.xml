@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tax_invoice_report_action" model="ir.actions.report">
+        <field name="name">Tax Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-html</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="report_name">tax_invoice_custom.tax_invoice_report_template</field>
+    </record>
+
+    <template id="tax_invoice_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 0;
+                        padding: 20px;
+                        font-size: 15px;
+                    }
+
+                    .titel {
+                        text-align: center;
+                        font-weight: 900;
+                        font-size: 20px;
+                        color: black !important;
+                        margin-bottom: 20px !important;
+                    }
+
+                    .details {
+                        font-weight: 900;
+                        font-style: normal;
+                        border-bottom: 1px solid black;
+                        display: inline-block;
+                        color: black;
+                    }
+
+                    .p_text {
+                        font-weight: 900;
+                        margin-bottom: 10px !important;
+                        margin-top: 10px !important;
+                    }
+
+                    .thead_bg {
+                        background-color: #cfcccc !important;
+                    }
+
+                    .spanTran {
+                        font-weight: 900;
+                        font-size: 14px;
+                        text-transform: uppercase;
+                    }
+
+                    .Tran {
+                        font-size: 12px;
+                    }
+
+                    .type_fields {
+                        margin: 5px !important;
+                        display: inline-block;
+                        text-align: center;
+                        font-size: 12px;
+                    }
+
+                    .name_fields {
+                        font-weight: 900;
+                    }
+
+                    .container_fildes {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin: 0px !important;
+                        padding: 0px !important;
+                    }
+
+                    .Charges {
+                        font-weight: 800;
+                        font-size: 12px;
+                    }
+
+                    .towCard {
+                        display: flex;
+                        gap: 10px;
+                        justify-content: space-between;
+                    }
+
+                    .card {
+                        flex: 1;
+                        max-width: 48%;
+                        background: #fff;
+                        padding: 10px;
+                        border: 1px solid #ddd;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        box-sizing: border-box;
+                    }
+
+                    .card a.details {
+                        font-weight: bold;
+                        color: #333;
+                        text-decoration: none;
+                    }
+
+                    .card .p_text, .card .content {
+                        font-size: 12px;
+                        color: #555;
+                        line-height: 1.4;
+                        word-wrap: break-word;
+                    }
+
+                    .details_fields .container_fildes {
+                        margin-bottom: 5px;
+                    }
+
+                    .name_fields {
+                        font-weight: bold;
+                        color: #333;
+                        margin-bottom: 3px;
+                    }
+
+                    .type_fields {
+                        color: #555;
+                    }
+
+                    .card p, .card span {
+                        margin: 0;
+                    }
+
+                    .card:last-child p {
+                        margin-top: 5px;
+                    }
+.terms{
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-style: italic;
+    border-bottom: 1px solid black;
+    width: fit-content;
+    margin: auto;
+    font-size: 30px;
+      align-items: stretch;
+}
+.p_terms{
+    margin-top: 20px;
+    width: auto;
+    font-size:15px ;
+  font-weight: 500;
+}
+.Availability{
+    font-weight: 900;
+    font-size: large;
+    float: left;
+    font-size: 25px;
+    text-align: center;
+}
+.ADVANCE_span{
+    font-weight: 900;
+}
+.Payment_red{
+    color:red ;
+    font-weight: 800;
+}
+.Exports_span{
+    font-weight: 900;
+    font-size: 20px;
+}
+.p_Exports{
+    margin-left: 20px;
+}
+                    .card_bootm {
+                        display: flex;
+                        justify-content: end;
+                        align-items: center;
+                        border: 1px solid black;
+                        margin-top: 10px;
+                        padding: 10px;
+                        page-break-inside: avoid;
+                    }
+
+                    .Total_Qty {
+                        display: flex;
+                        margin-right: 100px;
+                    }
+
+                    .total-q {
+                        font-weight: 900;
+                        font-size: 14px;
+                    }
+
+                    .Total_Gross {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+
+                    .table-responsive {
+                        overflow-x: auto;
+                    }
+                    .container{
+                       margin: 0;
+                      padding: 0;
+                      text-align: left;
+                      width: 100%;
+                    page-break-before: always;
+                    }
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                    }
+
+                    th, td {
+                        white-space: nowrap;
+                        text-align: center;
+                        padding: 5px;
+                        border: 1px solid #ddd;
+                        font-size: 12px;
+                    }
+
+                    th {
+                        background-color: #f8f9fa;
+                    }
+
+                    .output {
+                        margin-left: 10px;
+                    }
+
+                    .card-t {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    .card_price_write {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border: 1px solid black;
+                        padding: 10px;
+                        margin-top: 10px;
+                        align-items: stretch;
+                    }
+ .images {
+    float: left;
+    width: 100px;
+    height: auto;
+    position: absolute;
+    left: 120px;
+    border-right: 2px solid black;
+}
+
+                </style>
+                <div>
+                    <div>
+                        <br/>
+                        <img class="images" src="/tax_invoice_custom/static/description/qr.png"/>
+                        <br/>
+                        <br/>
+
+                        <h2 class="titel">TAX INVOICE <br/> فاتورة ضريبية</h2>
+                    </div>
+
+                    <div class="towCard">
+                        <div class="card">
+                            <a ref="" class="details">اسم العميل، العنوان، رقم الضريبة Customer</a>
+                            <p class="p_text">
+                                CUS0000947 - CUS٠٠٠٠٩٤٧ - International design <br/>
+                                engineering contracting Co. (IDEC) <br/>
+                                الشركة العالمية للنظم و التصميم و المقاولات المحدودة
+                            </p>
+                            <div class="content">
+                                <span class="num_customer">+966544473352</span><br/>
+                                <span class="gmail-customer">Sameh.abdlal@gmail.com</span>
+                                <p class="Tran">
+                                    <span class="spanTran">Tran:</span>
+                                    300552394900003 ٣٠٠٥٥٢٣٩٤٩٠٠٠٠٣ <br/>
+                                    International Design Engineering IDEC Building, Fawaziyah Area<br/>
+                                    31952 AL Khobar Saudi Arabia<br/>
+                                </p>
+                                <p>المملكة العربية السعودية</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="details_fields">
+                                <div class="container_fildes">
+                                    <p class="name_fields">No Inv : رقم الفاتورة</p>
+                                    <span class="type_fields">SNV-01305 SNV-٠١٣٠٥</span><br/>
+                                </div>
+                                <div class="container_fildes">
+                                    <p class="name_fields">Date Inv تاريخ الفاتورة</p>
+                                    <span class="type_fields">24L163</span><br/>
+                                </div>
+                                <div class="container_fildes">
+                                    <p class="name_fields">Ref No: مرجع رقم :</p>
+                                    <span class="type_fields">24L163</span><br/>
+                                </div>
+                                <div class="container_fildes">
+                                    <p class="name_fields">Days Credit : فترة الائتمان:</p>
+                                    <span class="type_fields">30 Days LPO</span><br/>
+                                </div>
+                                <div class="container_fildes">
+                                    <p class="name_fields">Currency: العملة</p>
+                                    <span class="type_fields">SAR</span><br/>
+                                </div>
+                                <div class="container_fildes">
+                                    <p class="name_fields">Person Sales موظف المبيعات:</p>
+                                    <span class="type_fields">Zaher Agib Zaher Agib</span><br/>
+                                </div>
+                                <div>
+                                    <p class="name_fields">Address Delivery عنوان التوصيل :</p>
+                                    <span class="type_fields">International Design Engineering IDEC Building, Fawaziyah Area</span><br/>
+                                </div>
+                                <p>المملكة العربية السعودية</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="thead_bg">
+                                    <tr>
+                                        <th scope="col">Sl No Code <br/> شفره الرقم</th>
+                                        <th scope="col">Item Type <br/> نوع العنصر</th>
+                                        <th scope="col">Description of Goods || Services <br/> اسم الصنف</th>
+                                        <th scope="col">Brand <br/> ماركة</th>
+                                        <th scope="col">QTY <br/> الكمية</th>
+                                        <th scope="col">Rate <br/> السعر</th>
+                                        <th scope="col">Unit <br/> الوحدة</th>
+                                        <th scope="col">Gross Amount <br/> الاجمالي</th>
+                                        <th scope="col">Vat 15% <br/> الضريبة</th>
+                                        <th scope="col">Net Amount <br/> مجموع المبلغ
+                                            <br/>
+                                            شامل الضريبه</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card_bootm">
+                        <div class="Total_Qty">
+                            <p class="total-q">Total Qty:<br/> جمالي الكمية</p>
+                            <span>3000</span>
+                        </div>
+                        <div class="card-t">
+                            <div class="Total_Gross">
+                                <p class="total-q">Charges Total <br/> مجموع الرسوم</p>
+                                <span class="output">0.00</span>
+                            </div>
+                            <div class="Total_Gross">
+                                <p class="total-q">VAT Total <br/> الضريبة القيمة المضافة</p>
+                                <span class="output">1,389.31</span>
+                            </div>
+                            <div class="Total_Gross">
+                                <p class="total-q">Net Total <br/> صافي المبلغ المستحق</p>
+                                <span class="output">9,262.08</span>
+                            </div>
+                            <div class="Total_Gross">
+                                <p class="total-q">Gross Total <br/> الاجمالي قبل الضريبة:</p>
+                                <span class="output">4444</span>
+                            </div>
+                            <div class="Total_Gross">
+                                <p class="total-q">Net Total <br/> صافي المبلغ المستحق</p>
+                                <span class="output">10,651.39</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card_price_write">
+                        <p>Amount to Words: المبلغ بالكلمات</p>
+                        <p>SAR Ten Thousand Six Hundred Fifty One And Thirty Nine Only</p>
+                    </div>
+                </div>
+ <div class="container">
+    <h2 class="terms"> Payment terms </h2>
+    <p class="p_terms">
+      <span class="ADVANCE_span">ADVANCE-</span> order will be processed upon advanced payment receipt only. The payment is considered as cleared once we get a formal notification from the
+      bank that it’s credited to our account.
+    </p>
+    <p class="p_terms">
+      <span class="ADVANCE_span">PDC-</span>
+     (post-dated cheque) - order will be processed upon receipt of an original copy of post-dated cheque
+    </p>
+    <p class="p_terms">
+      <span class="ADVANCE_span">LPO-</span> LPO - order will be processed upon receipt of a soft copy of signed purchase order. Payment will be proceeded as per within agreed period time after the
+      date mentioned in commercial invoice.
+    </p>
+    <p class="p_terms">
+      <span class="ADVANCE_span"> LC-</span>
+      (letter of credit) - draft copy of LC should be sent for prior approval. The order will be processed upon receipt of an original copy of LC from the bank.
+       </p>
+       <p class="p_terms">
+        <span class="ADVANCE_span"> Payment Methods:</span>
+        <br/>
+        As per our company policy, we do accept the following payment methods: <br/>
+         <span class="Payment_red">
+          Cash: payment is cleared immediately <br/>
+          Bank Telegraph Transfer: payment is cleared within 3-5 days. * Bank charge applies for all international transfers. <br/>
+          Current dated cheque: payment is cleared within 3-5 days.
+         </span>
+               </p>
+     <p class="p_terms">
+       <span class="ADVANCE_span">Bank Details:</span>  <br/>
+       Account Name: NMK Middle East Trading Company <br/>
+       Bank Name: Arab National Bank<br/>
+       Account: 0108095525080010, IBAN: SA9630400108095525080010, Swift Code: ARNBSARI, Currency: SAR
+         </p>
+         <p class="p_terms">
+          <span class="ADVANCE_span">Freight:</span>  <br/>
+          Freight terms are ExW Saudi Arabia unless “freight” is specifically included above. Incoterms® 2010 apply. Goods can be prepared for collection within 1-3 <br/>
+          days in case they are available in the stock. In the case of specific packing instructions such as labelling, pallets, etc., a surcharge may apply.<br/>
+          Delivery to the end user’s destination can be arranged for an extra charge.<br/>
+          Standard delivery lead time in Riyadh is 3-5 days; and other Provinces is 7-14; international destination is to be confirmed depends on the mode of
+          shipment
+            </p>
+            <p class="p_terms">
+              <span class="ADVANCE_span">Ownership:</span>  <br/>
+              The title and ownership of the goods shall not pass to the buyer until payment of all sums due has been made.
+                </p>
+          <p class="p_terms">
+                  <span class="ADVANCE_span">Items Return:</span>  <br/>
+                  Claims and returns can be accepted within the first 5 days upon receipt of items with the exception of customized items. Refunds are redeemable through a <br/>
+                  credit note beyond 14 days period and quality issues are subject restocking fee. Conditions apply.
+                </p>
+                <p class="p_terms">
+                  <span class="ADVANCE_span">Period of Validity:</span>  <br/>
+                  15 days from the date of issue, unless otherwise agreed. Any quotation issued in a currency other than SAR may be subject to revision as a result of <br/>
+                  significant currency fluctuations.
+                </p>
+                <p class="p_terms">
+                  <span class="ADVANCE_span">Warranty:</span>  <br/>
+                  The Seller will make every effort to ensure that the Goods supplied will be of satisfactory quality and warrants that the Goods will be free from defects in <br/>
+                  materials and workmanship for a period of 12 months. Extended warranty can be purchased for an extra cost. Conditions apply
+                </p>
+                <span class="Exports_span">Exports, Incoterms and Controls:</span>  <br/>
+                <p class="p_Exports">
+                  <span class="ADVANCE_span">1.</span>Unless otherwise agreed in Writing between the Parties, You or the End User shall be solely responsible for complying with any legislation or
+                  regulations governing the importation of the Goods into the country of destination and to clear the Goods for import, pay any import duties, local
+                  taxes and carry out any import customs formalities if required for delivery.
+                </p>
+                <p class="p_Exports">
+                  <span class="ADVANCE_span">2.</span> We shall be under no obligation to deliver Goods to or perform Services in any country falling under the control laws and regulations that are
+                  imposed and administered/enforced by the UK Government, U.S. Government (for example through the Department of Treasury, Department of
+                  Commerce or Department of State), the European Union and the United Nations Security Council under their respective financial and economic
+                  sanctions, trade and arms embargoes and any other trade prohibition/restriction lists (collectively “Sanctions”).
+                </p>
+                <p class="p_Exports">
+                  <span class="ADVANCE_span">3.</span>
+                   You agree not to export any Goods or allow any Goods to be exported to any such country, entity or individual that is subject to Sanctions.
+                </p>
+                <p class="p_Exports">
+                  <span class="ADVANCE_span">4. </span>
+                  You must inform Us, at time of order, if You have plans to export/re-export the Goods and we may require an end-user statement from the end     <br/>
+                  user customer regarding the end use of the Goods and where they will be located. We may cancel Your order without liability to you if in our <br/>
+                  reasonable opinion any end-user is the subject of Sanctions.
+                </p>
+                 <p class="p_Exports">
+                  <span class="ADVANCE_span">5.</span>
+                  The Buyer nor any of its affiliates including owners, directors, subsidiaries (or directors of subsidiaries), related parties and employees are subject <br/>
+                  to Sanctions. The Buyer will inform Us immediately if this position should change.
+                 </p>
+                 <p class="p_Exports">
+                  <span class="ADVANCE_span">6.</span>
+                  The Buyer has adequate controls and processes in place to ensure that their sale is in compliance with the applicable laws relating to Sanctions <br/>
+                  and will be responsible for the screening of parties involved in the rest of the supply chain.
+                 </p>
+                 <p class="p_Exports">
+                  <span class="ADVANCE_span">7.</span>
+                  We shall be under no obligation to deliver Goods to any country to which the manufacturer or supplier of the relevant Goods prohibits us from<br/>
+                  supplying such Goods.
+                    </p>
+                    <p class="p_Exports">
+                      <span class="ADVANCE_span">8.</span>
+                      8. Unless you have complied with clause   <span class="ADVANCE_span">4</span> , and without prejudice to clause  <span class="ADVANCE_span">3</span>, You agree not to sell or deliver any Goods to End Users or other<br/>
+                      purchasers based outside of the GCC without our prior written consent. If You do sell or deliver any Goods to End Users or other purchasers based<br/>
+                      outside of the GCC, You shall comply with any resale restrictions imposed by the manufacturer of the relevant Goods as notified to you by such<br/>
+                      manufacturer or by us.
+                    </p>
+  </div>
+            </t>
+        </t>
+    </template>
+</odoo>

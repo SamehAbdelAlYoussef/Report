@@ -1,0 +1,71 @@
+body{
+    font-family: sans-serif;
+}
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.titel{
+    text-align: center;
+    font-weight:900;
+    font-size: medium;
+    font-size: 30px;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+}
+/* card one */
+.card {
+    border: 1px solid #3f3e3e;
+    border-radius: 8px;
+    padding: 16px;
+    box-sizing: border-box;
+    width: auto;
+    margin-right: 40px;
+  }
+.towCard{
+    display:flex;
+   align-items: center;
+     justify-content: space-between;
+}
+.details{
+    font-weight: 900;
+    font-style:normal;
+    border-bottom: 2px solid black;
+    padding-bottom: 5px;
+}
+.p_text{
+    font-weight: 900;
+    margin-bottom: 20px !important;
+    margin-top: 20px !important;
+
+}
+
+.spanTran{
+    font-weight: 900;
+    font-size: large;
+    text-transform: uppercase;
+}
+.Tran{
+    font-size: 15px;
+}
+/* card tow */
+.type_fields{
+   margin: 5px !important;
+   display: inline-block;
+   text-align: center;
+   font-size:15px;
+}
+.name_fields{
+    font-weight: 900;
+}
+.container_fildes{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 0px !important;
+   padding: 0px !important;
+}
