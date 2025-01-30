@@ -101,16 +101,23 @@
                     }
 
                     .card a.details {
-                        font-weight: bold;
-                        color: #333;
-                        text-decoration: none;
+                        font-weight: 900;
+                        color: black;
+                        font-size: large;
+                       margin-bottom: 20px;
+                      padding:5px
                     }
 
-                    .card .p_text, .card .content {
+                    .card  .card .content {
                         font-size: 12px;
                         color: #555;
                         line-height: 1.4;
+                           font-weight: 900;
                         word-wrap: break-word;
+                    }
+                 .p_text{
+                         font-size: large;
+                         font-weight: 900;
                     }
 
                     .details_fields .container_fildes {
@@ -140,11 +147,10 @@
     font-weight: bold;
     font-style: italic;
     border-bottom: 1px solid black;
-    width: fit-content;
-    margin: auto;
     font-size: 30px;
-      align-items: stretch;
-}
+     align-items: stretch;
+
+       }
 .p_terms{
     margin-top: 20px;
     width: auto;
@@ -175,13 +181,12 @@
                     .card_bootm {
                         display: flex;
                         justify-content: end;
-                        align-items: center;
-                        border: 1px solid black;
-                        margin-top: 10px;
-                        padding: 10px;
+                        border: 1px solid  rgb(195, 197, 197);
+                        margin:auto;
+                        padding: 5px !important;
                         page-break-inside: avoid;
+                        width:100%;
                     }
-
                     .Total_Qty {
                         display: flex;
                         margin-right: 100px;
@@ -190,6 +195,8 @@
                     .total-q {
                         font-weight: 900;
                         font-size: 14px;
+                       margin-right: 8px !important;
+                        white-space: nowrap;
                     }
 
                     .Total_Gross {
@@ -227,13 +234,14 @@
 
                     .output {
                         margin-left: 10px;
+                             padding-bottom: 20px !important;
                     }
 
                     .card-t {
                         display: flex;
                         flex-direction: column;
+                        float: right !important;
                     }
-
                     .card_price_write {
                         display: flex;
                         justify-content: space-between;
@@ -252,6 +260,9 @@
     border-right: 2px solid black;
 }
 
+                   .defult_rigth{
+                       margin-left: 400px;
+                    }
                 </style>
                 <div>
                     <div>
@@ -265,13 +276,13 @@
 
                     <div class="towCard">
                         <div class="card">
-                            <a ref="" class="details">اسم العميل، العنوان، رقم الضريبة Customer</a>
+                            <a  class="details">Customer اسم العميل، العنوان، رقم الضريبة</a>
                             <p class="p_text">
                                 CUS0000947 - CUS٠٠٠٠٩٤٧ - International design <br/>
                                 engineering contracting Co. (IDEC) <br/>
                                 الشركة العالمية للنظم و التصميم و المقاولات المحدودة
                             </p>
-                            <div class="content">
+                            <div class="">
                                 <span class="num_customer">+966544473352</span><br/>
                                 <span class="gmail-customer">Sameh.abdlal@gmail.com</span>
                                 <p class="Tran">
@@ -280,8 +291,8 @@
                                     International Design Engineering IDEC Building, Fawaziyah Area<br/>
                                     31952 AL Khobar Saudi Arabia<br/>
                                 </p>
-                                <p>المملكة العربية السعودية</p>
                             </div>
+                                                            <p style=" font-weight: 900; "> المملكة العربية السعودية</p>
                         </div>
 
                         <div class="card">
@@ -314,7 +325,7 @@
                                     <p class="name_fields">Address Delivery عنوان التوصيل :</p>
                                     <span class="type_fields">International Design Engineering IDEC Building, Fawaziyah Area</span><br/>
                                 </div>
-                                <p>المملكة العربية السعودية</p>
+                                <p style=" font-weight: 900; "> المملكة العربية السعودية</p>
                             </div>
                         </div>
                     </div>
@@ -356,32 +367,34 @@
                         </div>
                     </div>
 
-                    <div class="card_bootm">
-                        <div class="Total_Qty">
-                            <p class="total-q">Total Qty:<br/> جمالي الكمية</p>
-                            <span>3000</span>
+                    <div class="card_bootm" >
+                            <div class="Total_Qty defult_rigth " >
+                            <p class="total-q">Total Qty: <br/> اجمالي الكمية</p>
+                             <span>3000</span>
                         </div>
-                        <div class="card-t">
+                        <div class="ma_rigth">
+                        <div class="card-t" >
                             <div class="Total_Gross">
-                                <p class="total-q">Charges Total <br/> مجموع الرسوم</p>
+                                <p class="total-q">Charges Total  مجموع الرسوم</p>
                                 <span class="output">0.00</span>
                             </div>
                             <div class="Total_Gross">
-                                <p class="total-q">VAT Total <br/> الضريبة القيمة المضافة</p>
+                                <p class="total-q">VAT Total  الضريبة القيمة المضافة</p>
                                 <span class="output">1,389.31</span>
                             </div>
                             <div class="Total_Gross">
-                                <p class="total-q">Net Total <br/> صافي المبلغ المستحق</p>
+                                <p class="total-q">Net Total  صافي المبلغ المستحق</p>
                                 <span class="output">9,262.08</span>
                             </div>
                             <div class="Total_Gross">
-                                <p class="total-q">Gross Total <br/> الاجمالي قبل الضريبة:</p>
+                                <p class="total-q">Gross Total الاجمالي قبل الضريبة:</p>
                                 <span class="output">4444</span>
                             </div>
                             <div class="Total_Gross">
-                                <p class="total-q">Net Total <br/> صافي المبلغ المستحق</p>
+                                <p class="total-q">Net Total  صافي المبلغ المستحق</p>
                                 <span class="output">10,651.39</span>
                             </div>
+                        </div>
                         </div>
                     </div>
 
@@ -390,12 +403,25 @@
                         <p>SAR Ten Thousand Six Hundred Fifty One And Thirty Nine Only</p>
                     </div>
                 </div>
- <div class="container">
-    <h2 class="terms"> Payment terms </h2>
-    <p class="p_terms">
-      <span class="ADVANCE_span">ADVANCE-</span> order will be processed upon advanced payment receipt only. The payment is considered as cleared once we get a formal notification from the
-      bank that it’s credited to our account.
-    </p>
+            <div class="container">
+                <div style="text-align: center;  margin-top: 20px;">
+            <h4 style="display: inline-block;border-bottom: 2px solid black; padding-bottom: 5px; font-weight: 800;   color: black;font-weight: bold;font-style: italic;">Terms :: Conditions</h4>
+            </div>
+               <p class="p_terms">
+               The items described above are our interpretation of your requirements. It is the customer’s responsibility to check that all quoted items meet with <br/>
+               requirements. If this is not the case, please contact us for a revised quotation. The prices shown are for the indicated quantities. Any variation in the<br/>
+               quantities ordered may affect the price. The quoted prices do not include official documentation such as certified or legalized Certificates of Origin, SASO<br/>
+               etc., should such documentation be required, please advise as a handling charge per document will apply. Such documents will be added to the quote as a<br/>
+               separate line item.
+               </p>
+
+            <div style="text-align: center;  margin-top: 20px;">
+            <h4 style="display: inline-block;border-bottom: 2px solid black; padding-bottom: 5px; font-weight: 800;   color: black;font-weight: bold;font-style: italic;">Payment terms</h4>
+            </div>
+        <p class="p_terms">
+          <span class="ADVANCE_span">ADVANCE-</span> order will be processed upon advanced payment receipt only. The payment is considered as cleared once we get a formal notification from the
+            bank that it’s credited to our account.
+        </p>
     <p class="p_terms">
       <span class="ADVANCE_span">PDC-</span>
      (post-dated cheque) - order will be processed upon receipt of an original copy of post-dated cheque
